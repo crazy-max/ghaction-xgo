@@ -1,0 +1,31 @@
+name: xgo
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  xgo:
+    strategy:
+      matrix:
+        go_version:
+          - 1.12.4
+          - 1.13.x
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v1
+      -
+        name: Build with xgo
+        uses: ./
+        with:
+          go_version: ${{ matrix.go_version }}
+          targets: windows/386 windows/amd64 linux/386 linux/amd64 darwin/386 darwin/amd64
+          flag_ldflags: -s -w
+          flag_v: false
+          flag_x: false
+      -
+        name: Test
+        run: |
+          file build/github.com/${{ github.event.repository.owner.login }}/*

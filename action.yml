@@ -1,0 +1,27 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: 'Golang CGO cross compiler'
+description: 'Golang CGO cross compiler using xgo'
+author: 'crazy-max'
+branding:
+  color: 'green'
+  icon: 'package'
+
+inputs:
+  go_version:
+    description: 'Xgo version to use. Example: 1.12.x'
+    default: 'latest'
+  targets:
+    description: 'Target systems to use space separated. Example: windows/amd64 linux/386'
+    default: '*/*'
+  flag_ldflags:
+    description: 'Arguments to pass on each go tool link invocation'
+  flag_v:
+    description: 'Prints the names of packages as they are compiled'
+    default: 'false'
+  flag_x:
+    description: 'Prints the build commands as compilation progresses'
+    default: 'false'
+
+runs:
+  using: 'node12'
+  main: 'lib/xgo.js'

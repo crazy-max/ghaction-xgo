@@ -1,0 +1,43 @@
+{
+  "name": "golang-cgo-cross-compiler",
+  "description": "Golang CGO cross compiler using xgo",
+  "main": "lib/xgo.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crazy-max/ghaction-xgo.git"
+  },
+  "keywords": [
+    "actions",
+    "xgo",
+    "golang",
+    "cgo"
+  ],
+  "author": "CrazyMax",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.0.0",
+    "@actions/exec": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.4",
+    "husky": "^2.3.0",
+    "prettier": "^1.17.1",
+    "typescript": "^3.5.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "test": "node lib/xgo"
+  },
+  "husky": {
+    "skipCI": true,
+    "hooks": {
+      "pre-commit": "npm run build && npm run format",
+      "post-commit": "npm prune --production && git add node_modules/* && git commit -m \"Husky commit correct node modules\""
+    }
+  }
+}
