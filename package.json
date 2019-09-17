@@ -13,7 +13,8 @@
     "actions",
     "xgo",
     "golang",
-    "cgo"
+    "cgo",
+    "cross-compiler"
   ],
   "author": "CrazyMax",
   "license": "MIT",
