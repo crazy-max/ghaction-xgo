@@ -1,39 +1,67 @@
+import * as download from 'download';
+import * as fs from 'fs';
+import * as os from 'os';
+import * as path from 'path';
+import * as child_process from 'child_process';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 
 async function run() {
   try {
+    const repo = process.env['GITHUB_REPOSITORY'];
+    const root = path.join(__dirname, '..');
+
+    const xgo_version = '0.2.0';
     const go_version = core.getInput('go_version');
     const targets = core.getInput('targets');
-    const flag_ldflags = core.getInput('flag_ldflags');
-    const flag_v = core.getInput('flag_v');
-    const flag_x = core.getInput('flag_x');
+    const out = core.getInput('out');
+    const v = core.getInput('v');
+    const x = core.getInput('x');
+    const ldflags = core.getInput('ldflags');
 
-    console.log('🐳 Check Docker version');
-    await exec.exec('docker', ['version']);
+    console.log('⬇️ Downloading xgo...');
+    const tmpdir = fs.mkdtempSync(path.join(os.tmpdir(), 'xgo-'));
+    await download.default(
+      `https://github.com/crazy-max/xgo/releases/download/v${xgo_version}/xgo_linux_amd64`,
+      tmpdir,
+      {filename: 'xgo'}
+    );
+    const xgo_path = `${tmpdir}/xgo`;
+    fs.chmodSync(xgo_path, '755');
 
-    console.log(`⬇️ Pulling crazymax/xgo:${go_version}...`);
-    await exec.exec('docker', ['pull', `crazymax/xgo:${go_version}`]);
+    // Run xgo
+    let args: Array<string> = [];
+    if (go_version) {
+      args.push('-go', go_version);
+    }
+    if (targets) {
+      args.push('-targets', targets);
+    }
+    if (out) {
+      args.push('-out', out);
+    } else if (repo) {
+      args.push('-out', path.join('build', path.basename(repo)));
+    }
+    if (/true/i.test(v)) {
+      args.push('-v');
+    }
+    if (/true/i.test(x)) {
+      args.push('-x');
+    }
+    if (ldflags) {
+      args.push('-ldflags', ldflags);
+    }
+    args.push(root);
+    await exec.exec(xgo_path, args);
 
-    console.log('🏃 Building project...');
-    await exec.exec('docker', [
-      'run',
-      '--rm',
-      '-i',
-      '-v',
-      `${process.env['GITHUB_WORKSPACE']}:/source`,
-      '-v',
-      `${process.env['GITHUB_WORKSPACE']}/build:/build`,
-      '-e',
-      `TARGETS=${targets}`,
-      '-e',
-      `FLAG_LDFLAGS=${flag_ldflags}`,
-      '-e',
-      `FLAG_V=${flag_v}`,
-      '-e',
-      `FLAG_X=${flag_x}`,
-      `crazymax/xgo:${go_version}`
-    ]);
+    console.log('🔨 Fixing perms...');
+    const uid = parseInt(
+      child_process.execSync(`id -u`, {encoding: 'utf8'}).trim()
+    );
+    const gid = parseInt(
+      child_process.execSync(`id -g`, {encoding: 'utf8'}).trim()
+    );
+    await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, root]);
   } catch (error) {
     core.setFailed(error.message);
   }

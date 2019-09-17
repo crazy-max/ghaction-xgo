@@ -21,11 +21,11 @@ jobs:
         uses: ./
         with:
           go_version: ${{ matrix.go_version }}
-          targets: windows/386 windows/amd64 linux/386 linux/amd64 darwin/386 darwin/amd64
-          flag_ldflags: -s -w
-          flag_v: false
-          flag_x: false
+          targets: windows/386,windows/amd64,linux/386,linux/amd64,darwin/386,darwin/amd64
+          v: true
+          x: false
+          ldflags: -s -w
       -
-        name: Test
+        name: Check output
         run: |
-          file build/github.com/${{ github.event.repository.owner.login }}/*
+          file build/*

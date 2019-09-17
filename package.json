@@ -18,12 +18,14 @@
   "author": "CrazyMax",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.0.0",
-    "@actions/exec": "^1.0.0"
+    "@actions/core": "^1.1.0",
+    "@actions/exec": "^1.0.1",
+    "download": "^7.1.0"
   },
   "devDependencies": {
     "@types/node": "^12.0.4",
-    "husky": "^2.3.0",
+    "@types/download": "^6.2.4",
+    "cross-env": "^5.2.1",
     "prettier": "^1.17.1",
     "typescript": "^3.5.1"
   },
@@ -31,13 +33,7 @@
     "build": "tsc",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
-    "test": "node lib/xgo"
-  },
-  "husky": {
-    "skipCI": true,
-    "hooks": {
-      "pre-commit": "npm run build && npm run format",
-      "post-commit": "npm prune --production && git add node_modules/* && git commit -m \"Husky commit correct node modules\""
-    }
+    "prune": "npm prune --production",
+    "test": "cross-env INPUT_GO_VERSION=1.12.x INPUT_TARGETS=windows/386,windows/amd64,linux/386,linux/amd64,darwin/386,darwin/amd64 node lib/xgo"
   }
 }

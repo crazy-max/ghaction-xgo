@@ -8,17 +8,20 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    -
-      name: Checkout
-      uses: actions/checkout@master
-    -
-      name: Set Node.js 12
-      uses: actions/setup-node@master
-      with:
-        version: 12.x
-    -
-      name: Install
-      run: npm install
-    -
-      name: Test
-      run: npm run test
+      -
+        name: Checkout
+        uses: actions/checkout@master
+      -
+        name: Set Node.js 12
+        uses: actions/setup-node@master
+        with:
+          version: 12.x
+      -
+        name: Install
+        run: |
+          npm install
+      -
+        name: Run test
+        run: |
+          npm run test
+          file build/*

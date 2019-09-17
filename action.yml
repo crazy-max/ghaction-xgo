@@ -1,6 +1,6 @@
 # https://help.github.com/en/articles/metadata-syntax-for-github-actions
 name: 'Golang CGO cross compiler'
-description: 'Golang CGO cross compiler using xgo'
+description: 'GitHub Action for xgo, a Golang CGO cross compiler'
 author: 'crazy-max'
 branding:
   color: 'green'
@@ -8,19 +8,21 @@ branding:
 
 inputs:
   go_version:
-    description: 'Xgo version to use. Example: 1.12.x'
+    description: 'Go release to use for cross compilation. Example: 1.12.x'
     default: 'latest'
+  out:
+    description: 'Prefix to use for output naming. Default: ./build/<reponame>'
   targets:
-    description: 'Target systems to use space separated. Example: windows/amd64 linux/386'
+    description: 'Comma separated targets to build for. Example: windows/amd64,linux/386'
     default: '*/*'
-  flag_ldflags:
-    description: 'Arguments to pass on each go tool link invocation'
-  flag_v:
+  v:
     description: 'Prints the names of packages as they are compiled'
     default: 'false'
-  flag_x:
+  x:
     description: 'Prints the build commands as compilation progresses'
     default: 'false'
+  ldflags:
+    description: 'Arguments to pass on each go tool link invocation'
 
 runs:
   using: 'node12'
