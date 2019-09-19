@@ -26,6 +26,8 @@ jobs:
           x: false
           ldflags: -s -w
       -
-        name: Check output
+        name: Check
         run: |
+          ls -al
+          ls -al build/
           file build/*

@@ -24,4 +24,9 @@ jobs:
         name: Run test
         run: |
           npm run test
+      -
+        name: Check
+        run: |
+          ls -al
+          ls -al build/
           file build/*
