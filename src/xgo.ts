@@ -9,7 +9,7 @@ import * as exec from '@actions/exec';
 async function run() {
   try {
     const workspace = process.env['GITHUB_WORKSPACE'] || '.';
-    const xgo_version = '0.3.1';
+    const xgo_version = '0.3.2';
     const go_version = core.getInput('go_version');
     const dest = core.getInput('dest');
     const prefix = core.getInput('prefix');
