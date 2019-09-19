@@ -11,7 +11,7 @@ async function run() {
     const repo = process.env['GITHUB_REPOSITORY'];
     const root = path.join(__dirname, '..');
 
-    const xgo_version = '0.2.0';
+    const xgo_version = '0.3.0';
     const go_version = core.getInput('go_version');
     const targets = core.getInput('targets');
     const out = core.getInput('out');
