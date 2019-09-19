@@ -10,8 +10,11 @@ inputs:
   go_version:
     description: 'Go release to use for cross compilation. Example: 1.12.x'
     default: 'latest'
-  out:
-    description: 'Prefix to use for output naming. Default: ./build/<reponame>'
+  dest:
+    description: 'Destination folder to put binaries in'
+    default: 'build'
+  prefix:
+    description: 'Prefix to use for output naming. Default to package name'
   targets:
     description: 'Comma separated targets to build for. Example: windows/amd64,linux/386'
     default: '*/*'

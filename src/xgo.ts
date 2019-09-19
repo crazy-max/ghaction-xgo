@@ -13,8 +13,9 @@ async function run() {
 
     const xgo_version = '0.3.0';
     const go_version = core.getInput('go_version');
+    const dest = core.getInput('dest');
+    const prefix = core.getInput('prefix');
     const targets = core.getInput('targets');
-    const out = core.getInput('out');
     const v = core.getInput('v');
     const x = core.getInput('x');
     const ldflags = core.getInput('ldflags');
@@ -34,13 +35,14 @@ async function run() {
     if (go_version) {
       args.push('-go', go_version);
     }
+    if (prefix) {
+      args.push('-out', prefix);
+    }
+    if (dest) {
+      args.push('-dest', dest);
+    }
     if (targets) {
       args.push('-targets', targets);
-    }
-    if (out) {
-      args.push('-out', out);
-    } else if (repo) {
-      args.push('-out', path.join('build', path.basename(repo)));
     }
     if (/true/i.test(v)) {
       args.push('-v');

@@ -38,8 +38,9 @@ jobs:
         uses: crazy-max/ghaction-xgo@master
         with:
           go_version: ${{ matrix.go_version }}
+          dest: build
+          prefix: myapp
           targets: windows/386,windows/amd64,linux/386,linux/amd64,darwin/386,darwin/amd64
-          out: build/myapp
           v: true
           x: false
           ldflags: -s -w
@@ -54,7 +55,8 @@ Following inputs can be used as `step.with` keys
 | Name            | Type    | Default              | Description                                                                                                                      |
 |-----------------|---------|----------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | `go_version`    | String  | `latest`             | Go release to use for cross compilation from those [docker tags](https://hub.docker.com/r/crazymax/xgo/tags/). Example: `1.12.x` |
-| `out`           | String  | `./build/<reponame>` | Prefix to use for output naming.                                                                                                 |
+| `dest`          | String  | `build`              | Destination folder to put binaries in.                                                                                           |
+| `prefix`        | String  |                      | Prefix to use for output naming. Default to package name                                                                         |
 | `targets`       | String  | `*/*`                | Comma separated targets to build for. Example: `windows/amd64,linux/386`                                                         |
 | `v`             | Bool    | `false`              | Prints the names of packages as they are compiled                                                                                |
 | `x`             | Bool    | `false`              | Prints the build commands as compilation progresses                                                                              |
