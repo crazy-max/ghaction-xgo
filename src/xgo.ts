@@ -8,9 +8,7 @@ import * as exec from '@actions/exec';
 
 async function run() {
   try {
-    const repo = process.env['GITHUB_REPOSITORY'];
-    const root = path.join(__dirname, '..');
-
+    const workspace = process.env['GITHUB_WORKSPACE'] || '.';
     const xgo_version = '0.3.1';
     const go_version = core.getInput('go_version');
     const dest = core.getInput('dest');
@@ -53,7 +51,7 @@ async function run() {
     if (ldflags) {
       args.push('-ldflags', ldflags);
     }
-    args.push(root);
+    args.push(workspace);
     await exec.exec(xgo_path, args);
 
     console.log('🔨 Fixing perms...');
@@ -63,7 +61,7 @@ async function run() {
     const gid = parseInt(
       child_process.execSync(`id -g`, {encoding: 'utf8'}).trim()
     );
-    await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, root]);
+    await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, workspace]);
   } catch (error) {
     core.setFailed(error.message);
   }
