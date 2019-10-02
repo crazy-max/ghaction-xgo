@@ -12,6 +12,7 @@ async function run() {
     const xgo_version = '0.3.2';
     const go_version = core.getInput('go_version');
     const dest = core.getInput('dest');
+    const pkg = core.getInput('pkg');
     const prefix = core.getInput('prefix');
     const targets = core.getInput('targets');
     const v = core.getInput('v');
@@ -32,6 +33,9 @@ async function run() {
     let args: Array<string> = [];
     if (go_version) {
       args.push('-go', go_version);
+    }
+    if (pkg) {
+      args.push('-pkg', pkg);
     }
     if (prefix) {
       args.push('-out', prefix);

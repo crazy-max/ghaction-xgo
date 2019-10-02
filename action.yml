@@ -13,6 +13,8 @@ inputs:
   dest:
     description: 'Destination folder to put binaries in'
     default: 'build'
+  pkg:
+    description: 'Sub-package to build if not root import'
   prefix:
     description: 'Prefix to use for output naming. Default to package name'
   targets:
