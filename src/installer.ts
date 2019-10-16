@@ -27,7 +27,7 @@ export async function getXgo(version: string): Promise<string> {
   core.info(`⬇️ Downloading ${downloadUrl}...`);
   await download.default(downloadUrl, tmpdir, {filename: fileName});
 
-  return path.join(tmpdir, osPlat == 'win32' ? 'xgo.exe' : 'xgo');
+  return path.join(tmpdir, fileName);
 }
 
 function getFileName(): string {
