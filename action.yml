@@ -34,4 +34,4 @@ inputs:
 
 runs:
   using: 'node12'
-  main: 'lib/xgo.js'
+  main: 'lib/main.js'
