@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@master
       -
         name: Build with xgo
-        uses: crazy-max/ghaction-xgo@master
+        uses: crazy-max/ghaction-xgo@v1
         with:
           xgo_version: latest
           go_version: ${{ matrix.go_version }}
