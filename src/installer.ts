@@ -27,6 +27,7 @@ export async function getXgo(version: string): Promise<string> {
   core.info(`⬇️ Downloading ${downloadUrl}...`);
   await download.default(downloadUrl, tmpdir, {filename: fileName});
 
+  fs.chmodSync(path.join(tmpdir, fileName), '755');
   return path.join(tmpdir, fileName);
 }
 
