@@ -37,6 +37,7 @@ jobs:
         name: Build with xgo
         uses: crazy-max/ghaction-xgo@master
         with:
+          xgo_version: latest
           go_version: ${{ matrix.go_version }}
           dest: build
           prefix: myapp
@@ -54,6 +55,7 @@ Following inputs can be used as `step.with` keys
 
 | Name            | Type    | Default              | Description                                                                                                                      |
 |-----------------|---------|----------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| `xgo_version`   | String  | `latest`             | xgo version. Example: `v0.3.2`                                                                                                   |
 | `go_version`    | String  | `latest`             | Go release to use for cross compilation from those [docker tags](https://hub.docker.com/r/crazymax/xgo/tags/). Example: `1.12.x` |
 | `dest`          | String  | `build`              | Destination folder to put binaries in                                                                                            |
 | `pkg`           | String  |                      | Sub-package to build if not root import                                                                                          |

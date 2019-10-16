@@ -2,31 +2,36 @@ name: test
 
 on:
   pull_request:
+    branches:
+      - master
+      - releases/*
   push:
+    branches:
+      - master
+      - releases/*
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       -
+        # https://github.com/actions/checkout
         name: Checkout
-        uses: actions/checkout@master
-      -
-        name: Set Node.js 12
-        uses: actions/setup-node@master
-        with:
-          version: 12.x
+        uses: actions/checkout@v1
       -
         name: Install
-        run: |
-          npm install
+        run: npm ci
       -
-        name: Run test
-        run: |
-          npm run test
+        name: Build
+        run: npm run build
       -
-        name: Check
+        name: Test
+        run: npm run test
+      -
+        name: Check for uncommitted changes
+        # Ensure no changes, but ignore node_modules dir since dev/fresh ci deps installed.
         run: |
-          ls -al
-          ls -al build/
-          file build/*
+          git diff --exit-code --stat -- . ':!node_modules' \
+          || (echo "##[error] found changed files after build. please 'npm run build && npm run format'" \
+                  "and check in all changes" \
+              && exit 1)

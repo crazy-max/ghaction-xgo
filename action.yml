@@ -7,6 +7,9 @@ branding:
   icon: 'package'
 
 inputs:
+  xgo_version:
+    description: 'xgo version. Example: v0.3.2'
+    default: 'latest'
   go_version:
     description: 'Go release to use for cross compilation. Example: 1.12.x'
     default: 'latest'
