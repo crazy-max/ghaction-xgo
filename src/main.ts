@@ -1,10 +1,16 @@
 import * as installer from './installer';
+import * as os from 'os';
 import * as child_process from 'child_process';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 
 async function run() {
   try {
+    if (os.platform() !== 'linux') {
+      core.setFailed('Only supported on linux platform');
+      return;
+    }
+
     const workspace = process.env['GITHUB_WORKSPACE'] || '.';
     const xgo_version = core.getInput('xgo_version') || 'latest';
     const go_version = core.getInput('go_version');

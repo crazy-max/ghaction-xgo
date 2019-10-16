@@ -65,6 +65,10 @@ Following inputs can be used as `step.with` keys
 | `x`             | Bool    | `false`              | Prints the build commands as compilation progresses                                                                              |
 | `ldflags`       | String  |                      | Arguments to pass on each go tool link invocation                                                                                |
 
+## :warning: Limitation
+
+This action is only available for Linux [virtual environments](https://help.github.com/en/articles/virtual-environments-for-github-actions#supported-virtual-environments-and-hardware-resources).
+
 ## 🤝 How can I help ?
 
 All kinds of contributions are welcome :raised_hands:!<br />
