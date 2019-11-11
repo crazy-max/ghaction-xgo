@@ -18,11 +18,7 @@ export async function getXgo(version: string): Promise<string> {
   core.info(`✅ xgo version found: ${version}`);
   const tmpdir = fs.mkdtempSync(path.join(os.tmpdir(), 'xgo-'));
   const fileName = getFileName();
-  const downloadUrl = util.format(
-    'https://github.com/crazy-max/xgo/releases/download/%s/%s',
-    version,
-    fileName
-  );
+  const downloadUrl = util.format('https://github.com/crazy-max/xgo/releases/download/%s/%s', version, fileName);
 
   core.info(`⬇️ Downloading ${downloadUrl}...`);
   await download.default(downloadUrl, tmpdir, {filename: fileName});
@@ -43,24 +39,15 @@ interface GitHubRelease {
 }
 
 async function determineVersion(version: string): Promise<string> {
-  let rest: restm.RestClient = new restm.RestClient(
-    'ghaction-xgo',
-    'https://github.com',
-    undefined,
-    {
-      headers: {
-        Accept: 'application/json'
-      }
+  let rest: restm.RestClient = new restm.RestClient('ghaction-xgo', 'https://github.com', undefined, {
+    headers: {
+      Accept: 'application/json'
     }
-  );
+  });
 
-  let res: restm.IRestResponse<GitHubRelease> = await rest.get<GitHubRelease>(
-    `/crazy-max/xgo/releases/${version}`
-  );
+  let res: restm.IRestResponse<GitHubRelease> = await rest.get<GitHubRelease>(`/crazy-max/xgo/releases/${version}`);
   if (res.statusCode != 200 || res.result === null) {
-    throw new Error(
-      `Cannot find xgo ${version} release (http ${res.statusCode})`
-    );
+    throw new Error(`Cannot find xgo ${version} release (http ${res.statusCode})`);
   }
 
   return res.result.tag_name;

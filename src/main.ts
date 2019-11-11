@@ -53,12 +53,8 @@ async function run() {
     await exec.exec(xgo, args);
 
     core.info('🔨 Fixing perms...');
-    const uid = parseInt(
-      child_process.execSync(`id -u`, {encoding: 'utf8'}).trim()
-    );
-    const gid = parseInt(
-      child_process.execSync(`id -g`, {encoding: 'utf8'}).trim()
-    );
+    const uid = parseInt(child_process.execSync(`id -u`, {encoding: 'utf8'}).trim());
+    const gid = parseInt(child_process.execSync(`id -g`, {encoding: 'utf8'}).trim());
     await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, workspace]);
   } catch (error) {
     core.setFailed(error.message);
