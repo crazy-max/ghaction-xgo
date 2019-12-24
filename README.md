@@ -33,7 +33,7 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v1
       -
         name: Build with xgo
         uses: crazy-max/ghaction-xgo@v1
