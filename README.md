@@ -65,6 +65,7 @@ Following inputs can be used as `step.with` keys
 | `v`             | Bool    | `false`              | Prints the names of packages as they are compiled                                                                                |
 | `x`             | Bool    | `false`              | Prints the build commands as compilation progresses                                                                              |
 | `ldflags`       | String  |                      | Arguments to pass on each go tool link invocation                                                                                |
+| `deps`          | String  |                      | Arguments to pass on [CGO dependencies](https://github.com/crazy-max/xgo/blob/master/doc/usage/cgo-dependencies.md)              |
 
 ## Limitation
 
