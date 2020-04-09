@@ -6,6 +6,13 @@
   "directories": {
     "lib": "lib"
   },
+  "scripts": {
+    "build": "tsc && ncc build",
+    "test": "jest",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "pre-checkin": "npm run format && npm run build"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/crazy-max/ghaction-xgo.git"
@@ -37,11 +44,5 @@
     "ts-jest": "^25.3.1",
     "typescript": "^3.8.3",
     "typescript-formatter": "^7.2.2"
-  },
-  "scripts": {
-    "build": "tsc",
-    "test": "jest",
-    "format": "prettier --write **/*.ts",
-    "format-check": "prettier --check **/*.ts"
   }
 }
