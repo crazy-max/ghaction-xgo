@@ -1,0 +1,34 @@
+# Changelog
+
+## 1.1.0 (2020/04/09)
+
+* Use ncc and clean workflows
+* Update deps
+
+## 1.0.1 (2019/11/14)
+
+* Update deps
+
+## 1.0.0 (2019/10/16)
+
+* Add `xgo_version` input
+* Add tests
+
+## 0.4.0 (2019/10/02)
+
+* Add `pkg` input
+* Update libs
+
+## 0.3.0 (2019/09/19)
+
+* Xgo 0.3.2
+* Use `GITHUB_WORKSPACE` as root dir since runner 2.158
+
+## 0.2.0 (2019/09/19)
+
+* Xgo 0.3.1
+* Add dest option
+
+## 0.1.0 (2019/09/17)
+
+* Initial version
