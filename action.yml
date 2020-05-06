@@ -29,6 +29,9 @@ inputs:
   x:
     description: 'Prints the build commands as compilation progresses'
     default: 'false'
+  buildmode:
+    description: 'Indicates which kind of object file to build'
+    default: 'default'
   ldflags:
     description: 'Arguments to pass on each go tool link invocation'
 

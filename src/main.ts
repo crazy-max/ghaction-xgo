@@ -20,6 +20,7 @@ async function run() {
     const targets = core.getInput('targets');
     const v = core.getInput('v');
     const x = core.getInput('x');
+    const buildmode = core.getInput('buildmode');
     const ldflags = core.getInput('ldflags');
     const xgo = await installer.getXgo(xgo_version);
 
@@ -45,6 +46,9 @@ async function run() {
     }
     if (/true/i.test(x)) {
       args.push('-x');
+    }
+    if (buildmode) {
+      args.push('-buildmode', buildmode);
     }
     if (ldflags) {
       args.push('-ldflags', ldflags);

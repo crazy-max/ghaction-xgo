@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0 (2020/05/06)
+
+* Add `buildmode` input (#146)
+* Update deps
+
 ## 1.1.0 (2020/04/09)
 
 * Use ncc and clean workflows
@@ -17,7 +22,7 @@
 ## 0.4.0 (2019/10/02)
 
 * Add `pkg` input
-* Update libs
+* Update deps
 
 ## 0.3.0 (2019/09/19)
 

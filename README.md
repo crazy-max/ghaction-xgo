@@ -30,7 +30,7 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       -
         name: Build with xgo
         uses: crazy-max/ghaction-xgo@v1
@@ -42,6 +42,7 @@ jobs:
           targets: windows/386,windows/amd64,linux/386,linux/amd64,darwin/386,darwin/amd64
           v: true
           x: false
+          buildmode: default
           ldflags: -s -w
 ```
 
@@ -61,6 +62,7 @@ Following inputs can be used as `step.with` keys
 | `targets`       | String  | `*/*`                | Comma separated targets to build for. Example: `windows/amd64,linux/386`                                                         |
 | `v`             | Bool    | `false`              | Prints the names of packages as they are compiled                                                                                |
 | `x`             | Bool    | `false`              | Prints the build commands as compilation progresses                                                                              |
+| `buildmode`     | String  | `default`            | Indicates which kind of object file to build                                                                                     |
 | `ldflags`       | String  |                      | Arguments to pass on each go tool link invocation                                                                                |
 
 ## Limitation

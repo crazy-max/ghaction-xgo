@@ -1,11 +1,7 @@
 {
   "name": "golang-cgo-cross-compiler",
-  "private": true,
   "description": "Golang CGO cross compiler using xgo",
   "main": "lib/main.js",
-  "directories": {
-    "lib": "lib"
-  },
   "scripts": {
     "build": "tsc && ncc build",
     "test": "jest",
