@@ -1,6 +1,7 @@
 [![GitHub release](https://img.shields.io/github/release/crazy-max/ghaction-xgo.svg?style=flat-square)](https://github.com/crazy-max/ghaction-xgo/releases/latest)
 [![GitHub marketplace](https://img.shields.io/badge/marketplace-golang--cgo--cross--compiler-blue?logo=github&style=flat-square)](https://github.com/marketplace/actions/golang-cgo-cross-compiler)
-[![Test workflow](https://github.com/crazy-max/ghaction-xgo/workflows/test/badge.svg)](https://github.com/crazy-max/ghaction-xgo/actions?workflow=test)
+[![Test workflow](https://img.shields.io/github/workflow/status/crazy-max/ghaction-xgo/test?label=test&logo=github&style=flat-square)](https://github.com/crazy-max/ghaction-xgo/actions?workflow=test)
+[![Codecov](https://img.shields.io/codecov/c/github/crazy-max/ghaction-xgo?logo=codecov&style=flat-square)](https://codecov.io/gh/crazy-max/ghaction-xgo)
 [![Become a sponsor](https://img.shields.io/badge/sponsor-crazy--max-181717.svg?logo=github&style=flat-square)](https://github.com/sponsors/crazy-max)
 [![Paypal Donate](https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square)](https://www.paypal.me/crazyws)
 
