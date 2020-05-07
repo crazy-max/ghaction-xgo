@@ -4653,6 +4653,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(__webpack_require__(747));
+const path = __importStar(__webpack_require__(622));
 const os = __importStar(__webpack_require__(87));
 const util = __importStar(__webpack_require__(669));
 const github = __importStar(__webpack_require__(824));
@@ -4675,9 +4676,10 @@ function getXgo(version) {
         core.debug(`Downloaded to ${downloadPath}`);
         core.info('🔨 Fixing perms...');
         fs.chmodSync(downloadPath, '0755');
-        const cachePath = yield tc.cacheFile(downloadPath, osPlat == 'win32' ? 'xgo.exe' : 'xgo', 'ghaction-xgo', semver);
+        const exeFile = osPlat == 'win32' ? 'xgo.exe' : 'xgo';
+        const cachePath = yield tc.cacheFile(downloadPath, exeFile, 'ghaction-xgo', semver);
         core.debug(`Cached to ${cachePath}`);
-        return cachePath;
+        return path.join(cachePath, exeFile);
     });
 }
 exports.getXgo = getXgo;

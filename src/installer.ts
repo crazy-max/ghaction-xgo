@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as path from 'path';
 import * as os from 'os';
 import * as util from 'util';
 import * as github from './github';
@@ -26,10 +27,11 @@ export async function getXgo(version: string): Promise<string> {
   core.info('🔨 Fixing perms...');
   fs.chmodSync(downloadPath, '0755');
 
-  const cachePath: string = await tc.cacheFile(downloadPath, osPlat == 'win32' ? 'xgo.exe' : 'xgo', 'ghaction-xgo', semver);
+  const exeFile: string = osPlat == 'win32' ? 'xgo.exe' : 'xgo';
+  const cachePath: string = await tc.cacheFile(downloadPath, exeFile, 'ghaction-xgo', semver);
   core.debug(`Cached to ${cachePath}`);
 
-  return cachePath;
+  return path.join(cachePath, exeFile);
 }
 
 const getFilename = (): string => {
