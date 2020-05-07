@@ -4,7 +4,7 @@ import * as child_process from 'child_process';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 
-async function run() {
+async function run(): Promise<void> {
   try {
     if (os.platform() !== 'linux') {
       core.setFailed('Only supported on linux platform');
@@ -57,8 +57,8 @@ async function run() {
     await exec.exec(xgo, args);
 
     core.info('🔨 Fixing perms...');
-    const uid = parseInt(child_process.execSync(`id -u`, {encoding: 'utf8'}).trim());
-    const gid = parseInt(child_process.execSync(`id -g`, {encoding: 'utf8'}).trim());
+    const uid = parseInt(await child_process.execSync(`id -u`, {encoding: 'utf8'}).trim());
+    const gid = parseInt(await child_process.execSync(`id -g`, {encoding: 'utf8'}).trim());
     await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, workspace]);
   } catch (error) {
     core.setFailed(error.message);

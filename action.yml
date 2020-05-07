@@ -8,10 +8,10 @@ branding:
 
 inputs:
   xgo_version:
-    description: 'xgo version. Example: v0.3.2'
+    description: 'xgo version'
     default: 'latest'
   go_version:
-    description: 'Go release to use for cross compilation. Example: 1.12.x'
+    description: 'Go release to use for cross compilation'
     default: 'latest'
   dest:
     description: 'Destination folder to put binaries in'
