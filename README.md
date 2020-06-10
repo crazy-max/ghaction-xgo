@@ -23,6 +23,7 @@ on:
 jobs:
   xgo:
     strategy:
+      fail-fast: false
       matrix:
         go_version:
           - 1.12.4
