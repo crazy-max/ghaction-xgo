@@ -20,8 +20,10 @@ async function run(): Promise<void> {
     const targets = core.getInput('targets');
     const v = core.getInput('v');
     const x = core.getInput('x');
-    const buildmode = core.getInput('buildmode');
+    const race = core.getInput('race');
+    const tags = core.getInput('tags');
     const ldflags = core.getInput('ldflags');
+    const buildmode = core.getInput('buildmode');
     const xgo = await installer.getXgo(xgo_version);
 
     // Run xgo
@@ -47,11 +49,17 @@ async function run(): Promise<void> {
     if (/true/i.test(x)) {
       args.push('-x');
     }
-    if (buildmode) {
-      args.push('-buildmode', buildmode);
+    if (/true/i.test(race)) {
+      args.push('-race');
+    }
+    if (tags) {
+      args.push('-tags', tags);
     }
     if (ldflags) {
       args.push('-ldflags', ldflags);
+    }
+    if (buildmode) {
+      args.push('-buildmode', buildmode);
     }
     args.push(workspace);
     await exec.exec(xgo, args);

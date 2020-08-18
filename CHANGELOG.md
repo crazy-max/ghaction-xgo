@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0 (2020/08/19)
+
+* Add `tags` and `race` inputs
+* Update deps
+
 ## 1.3.0 (2020/05/07)
 
 * Use native GitHub Action tools to download assets and use GitHub API

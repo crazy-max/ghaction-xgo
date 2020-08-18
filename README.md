@@ -44,8 +44,9 @@ jobs:
           targets: windows/386,windows/amd64,linux/386,linux/amd64,darwin/386,darwin/amd64
           v: true
           x: false
-          buildmode: default
+          race: false
           ldflags: -s -w
+          buildmode: default
 ```
 
 ## Customizing
@@ -64,8 +65,10 @@ Following inputs can be used as `step.with` keys
 | `targets`       | String  | `*/*`                | Comma separated targets to build for. Example: `windows/amd64,linux/386`                                                         |
 | `v`             | Bool    | `false`              | Prints the names of packages as they are compiled                                                                                |
 | `x`             | Bool    | `false`              | Prints the build commands as compilation progresses                                                                              |
-| `buildmode`     | String  | `default`            | Indicates which kind of object file to build                                                                                     |
+| `race`          | Bool    | `false`              | Enable data race detection (supported only on amd64)                                                                             |
+| `tags`          | String  |                      | Comma separated list of build tags to consider satisfied during the build                                                        |
 | `ldflags`       | String  |                      | Arguments to pass on each go tool link invocation                                                                                |
+| `buildmode`     | String  | `default`            | Indicates which kind of object file to build                                                                                     |
 
 ## Limitation
 

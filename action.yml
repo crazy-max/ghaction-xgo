@@ -10,30 +10,47 @@ inputs:
   xgo_version:
     description: 'xgo version'
     default: 'latest'
+    required: false
   go_version:
     description: 'Go release to use for cross compilation'
     default: 'latest'
+    required: false
   dest:
     description: 'Destination folder to put binaries in'
     default: 'build'
+    required: false
   pkg:
     description: 'Sub-package to build if not root import'
+    required: false
   prefix:
     description: 'Prefix to use for output naming. Default to package name'
+    required: false
   targets:
     description: 'Comma separated targets to build for. Example: windows/amd64,linux/386'
     default: '*/*'
+    required: false
   v:
     description: 'Prints the names of packages as they are compiled'
     default: 'false'
+    required: false
   x:
     description: 'Prints the build commands as compilation progresses'
     default: 'false'
+    required: false
+  race:
+    description: 'Enable data race detection (supported only on amd64)'
+    default: 'false'
+    required: false
+  tags:
+    description: 'Comma separated list of build tags to consider satisfied during the build'
+    required: false
+  ldflags:
+    description: 'Arguments to pass on each go tool link invocation'
+    required: false
   buildmode:
     description: 'Indicates which kind of object file to build'
     default: 'default'
-  ldflags:
-    description: 'Arguments to pass on each go tool link invocation'
+    required: false
 
 runs:
   using: 'node12'
