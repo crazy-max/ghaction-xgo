@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1 (2020/10/01)
+
+* Fix CVE-2020-15228
+
 ## 1.4.0 (2020/08/19)
 
 * Add `tags` and `race` inputs
