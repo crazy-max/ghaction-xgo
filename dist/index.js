@@ -182,6 +182,7 @@ function run() {
             const tags = core.getInput('tags');
             const ldflags = core.getInput('ldflags');
             const buildmode = core.getInput('buildmode');
+            const dockerRepo = core.getInput('docker-repo') || 'ghcr.io/crazy-max/xgo';
             const xgo = yield installer.getXgo(xgo_version);
             // Run xgo
             let args = [];
@@ -217,6 +218,9 @@ function run() {
             }
             if (buildmode) {
                 args.push('-buildmode', buildmode);
+            }
+            if (dockerRepo) {
+                args.push('-docker-repo', dockerRepo);
             }
             args.push(workspace);
             yield exec.exec(xgo, args);

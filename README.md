@@ -64,20 +64,21 @@ jobs:
 
 Following inputs can be used as `step.with` keys
 
-| Name            | Type    | Default              | Description                                                                                                                      |
-|-----------------|---------|----------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| `xgo_version`   | String  | `latest`             | xgo version. Example: `v0.3.2`                                                                                                   |
-| `go_version`    | String  | `latest`             | Go release to use for cross compilation from those [docker tags](https://hub.docker.com/r/crazymax/xgo/tags/). Example: `1.12.x` |
-| `dest`          | String  | `build`              | Destination folder to put binaries in                                                                                            |
-| `pkg`           | String  |                      | Sub-package to build if not root import                                                                                          |
-| `prefix`        | String  |                      | Prefix to use for output naming. Default to package name                                                                         |
-| `targets`       | String  | `*/*`                | Comma separated targets to build for. Example: `windows/amd64,linux/386`                                                         |
-| `v`             | Bool    | `false`              | Prints the names of packages as they are compiled                                                                                |
-| `x`             | Bool    | `false`              | Prints the build commands as compilation progresses                                                                              |
-| `race`          | Bool    | `false`              | Enable data race detection (supported only on amd64)                                                                             |
-| `tags`          | String  |                      | Comma separated list of build tags to consider satisfied during the build                                                        |
-| `ldflags`       | String  |                      | Arguments to pass on each go tool link invocation                                                                                |
-| `buildmode`     | String  | `default`            | Indicates which kind of object file to build                                                                                     |
+| Name            | Type    | Description                                                                                                                      |
+|-----------------|---------|----------------------------------------------------------------------------------------------------------------------------------|
+| `xgo_version`   | String  | xgo version. Eg. `v0.3.2` (default `latest`)                                                                                     |
+| `go_version`    | String  | Go release to use for cross compilation from those [docker tags](https://hub.docker.com/r/crazymax/xgo/tags/). Eg. `1.12.x` (default `latest`) |
+| `dest`          | String  | Destination folder to put binaries in (default `build`)                                                                          |
+| `pkg`           | String  | Sub-package to build if not root import                                                                                          |
+| `prefix`        | String  | Prefix to use for output naming. Default to package name                                                                         |
+| `targets`       | String  | Comma separated targets to build for. Eg. `windows/amd64,linux/386` (default `*/*`)                                              |
+| `v`             | Bool    | Prints the names of packages as they are compiled (default `false`)                                                              |
+| `x`             | Bool    | Prints the build commands as compilation progresses (default `false`)                                                            |
+| `race`          | Bool    | Enable data race detection (supported only on amd64) (default `false`)                                                           |
+| `tags`          | String  | Comma separated list of build tags to consider satisfied during the build                                                        |
+| `ldflags`       | String  | Arguments to pass on each go tool link invocation                                                                                |
+| `buildmode`     | String  | Indicates which kind of object file to build (default `default`)                                                                 |
+| `docker-repo`   | String  | Indicates which kind of object file to build (default `ghcr.io/crazy-max/xgo`)                                                   |
 
 ## Limitation
 
@@ -101,7 +102,10 @@ updates:
 
 ## How can I help?
 
-All kinds of contributions are welcome :raised_hands:! The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon: You can also support this project by [**becoming a sponsor on GitHub**](https://github.com/sponsors/crazy-max) :clap: or by making a [Paypal donation](https://www.paypal.me/crazyws) to ensure this journey continues indefinitely! :rocket:
+All kinds of contributions are welcome :raised_hands:! The most basic way to show your support is to star :star2:
+the project, or to raise issues :speech_balloon: You can also support this project by
+[**becoming a sponsor on GitHub**](https://github.com/sponsors/crazy-max) :clap: or by making a
+[Paypal donation](https://www.paypal.me/crazyws) to ensure this journey continues indefinitely! :rocket:
 
 Thanks again for your support, it is much appreciated! :pray:
 
