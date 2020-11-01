@@ -1,6 +1,7 @@
 import * as installer from './installer';
 import * as os from 'os';
 import * as child_process from 'child_process';
+import * as semver from 'semver';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 
@@ -62,11 +63,11 @@ async function run(): Promise<void> {
     if (buildmode) {
       args.push('-buildmode', buildmode);
     }
-    if (dockerRepo) {
+    if (dockerRepo && semver.satisfies(xgo.version, '>=0.5.0')) {
       args.push('-docker-repo', dockerRepo);
     }
     args.push(workspace);
-    await exec.exec(xgo, args);
+    await exec.exec(xgo.path, args);
 
     core.info('🔨 Fixing perms...');
     const uid = parseInt(await child_process.execSync(`id -u`, {encoding: 'utf8'}).trim());

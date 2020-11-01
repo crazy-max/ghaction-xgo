@@ -9,7 +9,12 @@ import * as tc from '@actions/tool-cache';
 const osPlat: string = os.platform();
 const osArch: string = os.arch();
 
-export async function getXgo(version: string): Promise<string> {
+export interface Xgo {
+  path: string;
+  version: string;
+}
+
+export async function getXgo(version: string): Promise<Xgo> {
   const release: github.GitHubRelease | null = await github.getRelease(version);
   if (!release) {
     throw new Error(`Cannot find Mage ${version} release`);
@@ -31,7 +36,10 @@ export async function getXgo(version: string): Promise<string> {
   const cachePath: string = await tc.cacheFile(downloadPath, exeFile, 'ghaction-xgo', semver);
   core.debug(`Cached to ${cachePath}`);
 
-  return path.join(cachePath, exeFile);
+  return {
+    path: path.join(cachePath, exeFile),
+    version: release.tag_name
+  };
 }
 
 const getFilename = (): string => {
