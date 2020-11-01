@@ -78,7 +78,7 @@ Following inputs can be used as `step.with` keys
 | `tags`          | String  | Comma separated list of build tags to consider satisfied during the build                                                        |
 | `ldflags`       | String  | Arguments to pass on each go tool link invocation                                                                                |
 | `buildmode`     | String  | Indicates which kind of object file to build (default `default`)                                                                 |
-| `docker-repo`   | String  | Indicates which kind of object file to build (default `ghcr.io/crazy-max/xgo`)                                                   |
+| `docker-repo`   | String  | Use custom docker repo instead of official distribution (default `ghcr.io/crazy-max/xgo`)                                        |
 
 ## Limitation
 
