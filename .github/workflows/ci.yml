@@ -18,11 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xgo_version:
-          - latest
-          - v0.3.1
         go_version:
-          - 1.13.x
           - 1.14.x
           - 1.15.x
     steps:
@@ -33,15 +29,13 @@ jobs:
         name: Xgo
         uses: ./
         with:
-          xgo_version: ${{ matrix.xgo_version }}
           go_version: ${{ matrix.go_version }}
-          targets: windows/386,windows/amd64,linux/386,linux/amd64,darwin/386,darwin/amd64
+          targets: windows/386,windows/amd64,linux/386,linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,darwin/386,darwin/amd64
           v: true
           x: false
           ldflags: -s -w
       -
         name: Check
         run: |
-          ls -al
-          ls -al build/
-          file build/*
+          sudo apt-get -qq install tree
+          tree -f -h ./build
