@@ -21,7 +21,7 @@ jobs:
           - go_version: 1.15.x
             targets: windows/386,windows/amd64,linux/386,linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,darwin/386,darwin/amd64
           - go_version: 1.16.x
-            targets: windows/386,windows/amd64,linux/386,linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,darwin/386,darwin/amd64
+            targets: windows/386,windows/amd64,linux/386,linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,darwin/386,darwin/amd64,darwin/arm64
     steps:
       -
         name: Checkout
