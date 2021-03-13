@@ -82,7 +82,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getXgo = void 0;
-const fs = __importStar(__webpack_require__(5747));
 const path = __importStar(__webpack_require__(5622));
 const os = __importStar(__webpack_require__(2087));
 const util = __importStar(__webpack_require__(1669));
@@ -95,32 +94,40 @@ function getXgo(version) {
     return __awaiter(this, void 0, void 0, function* () {
         const release = yield github.getRelease(version);
         if (!release) {
-            throw new Error(`Cannot find Mage ${version} release`);
+            throw new Error(`Cannot find xgo ${version} release`);
         }
         const semver = release.tag_name.replace(/^v/, '');
         core.info(`✅ xgo version found: ${release.tag_name}`);
-        const filename = getFilename();
+        const filename = getFilename(semver);
         const downloadUrl = util.format('https://github.com/crazy-max/xgo/releases/download/%s/%s', release.tag_name, filename);
         core.info(`⬇️ Downloading ${downloadUrl}...`);
         const downloadPath = yield tc.downloadTool(downloadUrl);
         core.debug(`Downloaded to ${downloadPath}`);
-        core.info('🔨 Fixing perms...');
-        fs.chmodSync(downloadPath, '0755');
-        const exeFile = osPlat == 'win32' ? 'xgo.exe' : 'xgo';
-        const cachePath = yield tc.cacheFile(downloadPath, exeFile, 'ghaction-xgo', semver);
+        core.info('📦 Extracting xgo...');
+        let extPath;
+        if (osPlat == 'win32') {
+            extPath = yield tc.extractZip(downloadPath);
+        }
+        else {
+            extPath = yield tc.extractTar(downloadPath);
+        }
+        core.debug(`Extracted to ${extPath}`);
+        const cachePath = yield tc.cacheDir(extPath, 'ghaction-xgo', semver);
         core.debug(`Cached to ${cachePath}`);
+        const exePath = path.join(cachePath, osPlat == 'win32' ? 'xgo.exe' : 'xgo');
+        core.debug(`Exe path is ${exePath}`);
         return {
-            path: path.join(cachePath, exeFile),
+            path: path.join(cachePath, osPlat == 'win32' ? 'xgo.exe' : 'xgo'),
             version: release.tag_name
         };
     });
 }
 exports.getXgo = getXgo;
-const getFilename = () => {
+const getFilename = (semver) => {
     const platform = osPlat == 'win32' ? 'windows' : osPlat;
-    const arch = osArch == 'x64' ? 'amd64' : '386';
-    const ext = osPlat == 'win32' ? '.exe' : '';
-    return util.format('xgo_%s_%s%s', platform, arch, ext);
+    const arch = osArch == 'x64' ? 'x86_64' : 'i386';
+    const ext = osPlat == 'win32' ? '.zip' : '.tar.gz';
+    return util.format('xgo_%s_%s_%s%s', semver, platform, arch, ext);
 };
 //# sourceMappingURL=installer.js.map
 

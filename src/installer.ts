@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
 import * as util from 'util';
@@ -17,34 +16,42 @@ export interface Xgo {
 export async function getXgo(version: string): Promise<Xgo> {
   const release: github.GitHubRelease | null = await github.getRelease(version);
   if (!release) {
-    throw new Error(`Cannot find Mage ${version} release`);
+    throw new Error(`Cannot find xgo ${version} release`);
   }
   const semver: string = release.tag_name.replace(/^v/, '');
 
   core.info(`✅ xgo version found: ${release.tag_name}`);
-  const filename = getFilename();
+  const filename = getFilename(semver);
   const downloadUrl: string = util.format('https://github.com/crazy-max/xgo/releases/download/%s/%s', release.tag_name, filename);
 
   core.info(`⬇️ Downloading ${downloadUrl}...`);
   const downloadPath: string = await tc.downloadTool(downloadUrl);
   core.debug(`Downloaded to ${downloadPath}`);
 
-  core.info('🔨 Fixing perms...');
-  fs.chmodSync(downloadPath, '0755');
+  core.info('📦 Extracting xgo...');
+  let extPath: string;
+  if (osPlat == 'win32') {
+    extPath = await tc.extractZip(downloadPath);
+  } else {
+    extPath = await tc.extractTar(downloadPath);
+  }
+  core.debug(`Extracted to ${extPath}`);
 
-  const exeFile: string = osPlat == 'win32' ? 'xgo.exe' : 'xgo';
-  const cachePath: string = await tc.cacheFile(downloadPath, exeFile, 'ghaction-xgo', semver);
+  const cachePath: string = await tc.cacheDir(extPath, 'ghaction-xgo', semver);
   core.debug(`Cached to ${cachePath}`);
 
+  const exePath: string = path.join(cachePath, osPlat == 'win32' ? 'xgo.exe' : 'xgo');
+  core.debug(`Exe path is ${exePath}`);
+
   return {
-    path: path.join(cachePath, exeFile),
+    path: path.join(cachePath, osPlat == 'win32' ? 'xgo.exe' : 'xgo'),
     version: release.tag_name
   };
 }
 
-const getFilename = (): string => {
+const getFilename = (semver: string): string => {
   const platform: string = osPlat == 'win32' ? 'windows' : osPlat;
-  const arch: string = osArch == 'x64' ? 'amd64' : '386';
-  const ext: string = osPlat == 'win32' ? '.exe' : '';
-  return util.format('xgo_%s_%s%s', platform, arch, ext);
+  const arch: string = osArch == 'x64' ? 'x86_64' : 'i386';
+  const ext: string = osPlat == 'win32' ? '.zip' : '.tar.gz';
+  return util.format('xgo_%s_%s_%s%s', semver, platform, arch, ext);
 };

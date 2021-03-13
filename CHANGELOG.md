@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.0 (2021/03/13)
+
+* Refactor installer since [xgo 0.6.0](https://github.com/crazy-max/xgo/releases/tag/v0.6.0)
+* Container dev workflow (#196)
+* Bump node-notifier from 8.0.0 to 8.0.1 (#195)
+* Bump semver from 7.3.2 to 7.3.4 (#194)
+* Bump @actions/tool-cache from 1.6.0 to 1.6.1 (#193)
+
 ## 1.5.0 (2020/11/01)
 
 * Add `docker-repo` input
