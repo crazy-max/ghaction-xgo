@@ -191,7 +191,7 @@ function run() {
             const tags = core.getInput('tags');
             const ldflags = core.getInput('ldflags');
             const buildmode = core.getInput('buildmode');
-            const rootPath = core.getInput('root_path') || process.env['GITHUB_WORKSPACE'] || '.';
+            const workingDir = core.getInput('working_dir') || process.env['GITHUB_WORKSPACE'] || '.';
             const xgo = yield installer.getXgo(xgo_version);
             // Run xgo
             let args = [];
@@ -228,12 +228,13 @@ function run() {
             if (buildmode) {
                 args.push('-buildmode', buildmode);
             }
-            args.push(rootPath);
+            args.push('.');
+            process.chdir(workingDir);
             yield exec.exec(xgo.path, args);
             core.info('🔨 Fixing perms...');
             const uid = parseInt(yield child_process.execSync(`id -u`, { encoding: 'utf8' }).trim());
             const gid = parseInt(yield child_process.execSync(`id -g`, { encoding: 'utf8' }).trim());
-            yield exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, rootPath]);
+            yield exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, workingDir]);
         }
         catch (error) {
             core.setFailed(error.message);

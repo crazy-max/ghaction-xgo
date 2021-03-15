@@ -1,7 +1,6 @@
 import * as installer from './installer';
 import * as os from 'os';
 import * as child_process from 'child_process';
-import * as semver from 'semver';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 
@@ -24,7 +23,7 @@ async function run(): Promise<void> {
     const tags = core.getInput('tags');
     const ldflags = core.getInput('ldflags');
     const buildmode = core.getInput('buildmode');
-    const rootPath = core.getInput('root_path') || process.env['GITHUB_WORKSPACE'] || '.';
+    const workingDir = core.getInput('working_dir') || process.env['GITHUB_WORKSPACE'] || '.';
     const xgo = await installer.getXgo(xgo_version);
 
     // Run xgo
@@ -62,13 +61,15 @@ async function run(): Promise<void> {
     if (buildmode) {
       args.push('-buildmode', buildmode);
     }
-    args.push(rootPath);
+    args.push('.');
+
+    process.chdir(workingDir);
     await exec.exec(xgo.path, args);
 
     core.info('🔨 Fixing perms...');
     const uid = parseInt(await child_process.execSync(`id -u`, {encoding: 'utf8'}).trim());
     const gid = parseInt(await child_process.execSync(`id -g`, {encoding: 'utf8'}).trim());
-    await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, rootPath]);
+    await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, workingDir]);
   } catch (error) {
     core.setFailed(error.message);
   }
