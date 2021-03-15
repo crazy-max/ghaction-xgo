@@ -1,4 +1,4 @@
-module github.com/crazy-max/ghaction-xgo
+module github.com/crazy-max/ghaction-xgo/test
 
 go 1.13
 
