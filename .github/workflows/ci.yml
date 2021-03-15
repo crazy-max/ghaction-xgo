@@ -29,10 +29,10 @@ jobs:
         uses: ./
         with:
           go_version: ${{ matrix.go_version }}
-          pkg: test
           v: true
           x: false
           ldflags: -s -w
+          root_path: ./test
       -
         name: Check
         run: |
