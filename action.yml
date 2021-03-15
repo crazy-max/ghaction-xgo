@@ -51,8 +51,8 @@ inputs:
     description: 'Indicates which kind of object file to build'
     default: 'default'
     required: false
-  root_path:
-    description: 'Root import path to build'
+  working_dir:
+    description: 'Working directory'
     required: false
   docker-repo:
     deprecationMessage: 'docker-repo is deprecated and not used anymore.'

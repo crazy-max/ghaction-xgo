@@ -78,7 +78,7 @@ Following inputs can be used as `step.with` keys
 | `tags`          | String  | Comma separated list of build tags to consider satisfied during the build                                                        |
 | `ldflags`       | String  | Arguments to pass on each go tool link invocation                                                                                |
 | `buildmode`     | String  | Indicates which kind of object file to build (default `default`)                                                                 |
-| `root_path`     | String  | Root import path to build (default `$GITHUB_WORKSPACE`)                                                                          |
+| `working_dir`   | String  | Working directory (default `$GITHUB_WORKSPACE`)                                                                                  |
 
 ## Limitation
 
