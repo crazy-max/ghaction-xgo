@@ -12,7 +12,6 @@ async function run(): Promise<void> {
       return;
     }
 
-    const workspace = process.env['GITHUB_WORKSPACE'] || '.';
     const xgo_version = core.getInput('xgo_version') || 'latest';
     const go_version = core.getInput('go_version');
     const dest = core.getInput('dest');
@@ -25,7 +24,7 @@ async function run(): Promise<void> {
     const tags = core.getInput('tags');
     const ldflags = core.getInput('ldflags');
     const buildmode = core.getInput('buildmode');
-    const dockerRepo = core.getInput('docker-repo') || 'ghcr.io/crazy-max/xgo';
+    const rootPath = core.getInput('root_path') || process.env['GITHUB_WORKSPACE'] || '.';
     const xgo = await installer.getXgo(xgo_version);
 
     // Run xgo
@@ -63,16 +62,13 @@ async function run(): Promise<void> {
     if (buildmode) {
       args.push('-buildmode', buildmode);
     }
-    if (dockerRepo && semver.satisfies(xgo.version, '>=0.5.0')) {
-      args.push('-docker-repo', dockerRepo);
-    }
-    args.push(workspace);
+    args.push(rootPath);
     await exec.exec(xgo.path, args);
 
     core.info('🔨 Fixing perms...');
     const uid = parseInt(await child_process.execSync(`id -u`, {encoding: 'utf8'}).trim());
     const gid = parseInt(await child_process.execSync(`id -g`, {encoding: 'utf8'}).trim());
-    await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, workspace]);
+    await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, rootPath]);
   } catch (error) {
     core.setFailed(error.message);
   }
