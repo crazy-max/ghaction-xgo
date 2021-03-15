@@ -32,7 +32,7 @@ jobs:
           v: true
           x: false
           ldflags: -s -w
-          root_path: ./test
+          working_dir: ./test
       -
         name: Check
         run: |
