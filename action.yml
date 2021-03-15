@@ -51,7 +51,11 @@ inputs:
     description: 'Indicates which kind of object file to build'
     default: 'default'
     required: false
+  root_path:
+    description: 'Root import path to build'
+    required: false
   docker-repo:
+    deprecationMessage: 'docker-repo is deprecated and not used anymore.'
     description: 'Use custom docker repo instead of official distribution'
     default: 'ghcr.io/crazy-max/xgo'
     required: false
