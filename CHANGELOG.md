@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.1 (2021/03/16)
+
+* Fix working dir and update ci workflow (#197)
+
 ## 1.6.0 (2021/03/13)
 
 * Refactor installer since [xgo 0.6.0](https://github.com/crazy-max/xgo/releases/tag/v0.6.0)
