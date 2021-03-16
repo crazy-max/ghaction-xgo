@@ -35,7 +35,6 @@ jobs:
           working_dir: ./test
       -
         name: Check
-        working-directory: ./test
         run: |
           sudo apt-get -qq install tree
           tree -f -h ./build
