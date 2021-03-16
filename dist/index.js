@@ -169,6 +169,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const installer = __importStar(__webpack_require__(480));
 const os = __importStar(__webpack_require__(87));
+const path = __importStar(__webpack_require__(622));
 const child_process = __importStar(__webpack_require__(129));
 const core = __importStar(__webpack_require__(186));
 const exec = __importStar(__webpack_require__(514));
@@ -191,7 +192,7 @@ function run() {
             const tags = core.getInput('tags');
             const ldflags = core.getInput('ldflags');
             const buildmode = core.getInput('buildmode');
-            const workingDir = core.getInput('working_dir') || process.env['GITHUB_WORKSPACE'] || '.';
+            const workingDir = path.resolve(core.getInput('working_dir') || process.env['GITHUB_WORKSPACE'] || '.');
             const xgo = yield installer.getXgo(xgo_version);
             // Run xgo
             let args = [];

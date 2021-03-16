@@ -17,11 +17,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - go_version: 1.15.x
-            targets: windows/386,windows/amd64,linux/386,linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,darwin/386,darwin/amd64
-          - go_version: 1.16.x
-            targets: windows/386,windows/amd64,linux/386,linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,darwin/386,darwin/amd64,darwin/arm64
+        go_version:
+          - 1.15.x
+          - 1.16.x
     steps:
       -
         name: Checkout
@@ -31,12 +29,12 @@ jobs:
         uses: ./
         with:
           go_version: ${{ matrix.go_version }}
-          targets: ${{ matrix.targets }}
           v: true
           x: false
           ldflags: -s -w
+          working_dir: ./test
       -
         name: Check
         run: |
           sudo apt-get -qq install tree
-          tree -f -h ./build
+          tree -f -h ./test/build

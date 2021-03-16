@@ -1,5 +1,6 @@
 import * as installer from './installer';
 import * as os from 'os';
+import * as path from 'path';
 import * as child_process from 'child_process';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
@@ -23,7 +24,7 @@ async function run(): Promise<void> {
     const tags = core.getInput('tags');
     const ldflags = core.getInput('ldflags');
     const buildmode = core.getInput('buildmode');
-    const workingDir = core.getInput('working_dir') || process.env['GITHUB_WORKSPACE'] || '.';
+    const workingDir = path.resolve(core.getInput('working_dir') || process.env['GITHUB_WORKSPACE'] || '.');
     const xgo = await installer.getXgo(xgo_version);
 
     // Run xgo
