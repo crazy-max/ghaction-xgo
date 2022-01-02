@@ -7,7 +7,7 @@
 
 ## About
 
-A GitHub Action for [xgo](https://github.com/crazy-max/xgo), a Golang CGO cross compiler.
+A GitHub Action for [xgo](https://github.com/crazy-max/xgo), a Golang CGO cross-compiler.
 
 If you are interested, [check out](https://git.io/Je09Y) my other :octocat: GitHub Actions!
 
@@ -35,7 +35,7 @@ jobs:
       matrix:
         go_version:
           - 1.12.4
-          - 1.13.x
+          - 1.13
     runs-on: ubuntu-latest
     steps:
       -
@@ -66,7 +66,7 @@ Following inputs can be used as `step.with` keys
 | Name            | Type    | Description                                                                                                                      |
 |-----------------|---------|----------------------------------------------------------------------------------------------------------------------------------|
 | `xgo_version`   | String  | xgo version. Eg. `v0.3.2` (default `latest`)                                                                                     |
-| `go_version`    | String  | Go release to use for cross compilation from those [docker tags](https://hub.docker.com/r/crazymax/xgo/tags/). Eg. `1.12.x` (default `latest`) |
+| `go_version`    | String  | Go release to use for cross compilation from those [docker tags](https://hub.docker.com/r/crazymax/xgo/tags/). Eg. `1.17` (default `latest`) |
 | `dest`          | String  | Destination folder to put binaries in (default `build`)                                                                          |
 | `pkg`           | String  | Sub-package to build if not root import                                                                                          |
 | `prefix`        | String  | Prefix to use for output naming. Default to package name                                                                         |
