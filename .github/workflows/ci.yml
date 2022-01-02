@@ -2,7 +2,7 @@ name: ci
 
 on:
   schedule:
-    - cron: '0 10 * * *' # everyday at 10am
+    - cron: '0 10 * * *'
   push:
     branches:
       - 'master'
@@ -21,8 +21,8 @@ jobs:
       fail-fast: false
       matrix:
         go_version:
-          - 1.15.x
-          - 1.16.x
+          - 1.16
+          - 1.17
     steps:
       -
         name: Checkout
