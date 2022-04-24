@@ -28,7 +28,7 @@ async function run(): Promise<void> {
     const xgo = await installer.getXgo(xgo_version);
 
     // Run xgo
-    let args: Array<string> = [];
+    const args: Array<string> = [];
     if (go_version) {
       args.push('-go', go_version);
     }
@@ -68,8 +68,8 @@ async function run(): Promise<void> {
     await exec.exec(xgo.path, args);
 
     core.info('🔨 Fixing perms...');
-    const uid = parseInt(await child_process.execSync(`id -u`, {encoding: 'utf8'}).trim());
-    const gid = parseInt(await child_process.execSync(`id -g`, {encoding: 'utf8'}).trim());
+    const uid = parseInt(child_process.execSync(`id -u`, {encoding: 'utf8'}).trim());
+    const gid = parseInt(child_process.execSync(`id -g`, {encoding: 'utf8'}).trim());
     await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, workingDir]);
   } catch (error) {
     core.setFailed(error.message);
