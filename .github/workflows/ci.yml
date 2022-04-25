@@ -32,6 +32,7 @@ jobs:
         uses: ./
         with:
           go_version: ${{ matrix.go_version }}
+          targets: windows/amd64,linux/amd64,linux/arm64,linux/arm/v7,darwin/amd64,darwin/arm64
           v: true
           x: false
           ldflags: -s -w
