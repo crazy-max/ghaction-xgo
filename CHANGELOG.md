@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.7.0 (2022/04/25)
+
+* Update e2e test and ci workflow (#233)
+* Update dev dependencies and workflow (#232)
+* Bump @actions/exec from 1.0.4 to 1.1.1 (#228)
+* Bump minimist from 1.2.5 to 1.2.6 (#230)
+* Bump ansi-regex from 5.0.0 to 5.0.1 (#222)
+* Bump tmpl from 1.0.4 to 1.0.5 (#221)
+* Bump path-parse from 1.0.6 to 1.0.7 (#219)
+* Bump @actions/tool-cache from 1.6.1 to 1.7.2 (#212 #229)
+* Bump @actions/core from 1.2.7 to 1.6.0 (#211 #223)
+* Bump ws from 7.3.0 to 7.4.6 (#213)
+* Bump hosted-git-info from 2.8.8 to 2.8.9 (#206)
+* Bump lodash from 4.17.20 to 4.17.21 (#205)
+* Bump @actions/core from 1.2.6 to 1.2.7 (#204)
+* Bump y18n from 4.0.0 to 4.0.1 (#202)
+* Bump @actions/http-client from 1.0.9 to 1.0.11 (#200)
+* Enhance workflow (#201)
+
 ## 1.6.1 (2021/03/16)
 
 * Fix working dir and update ci workflow (#197)
