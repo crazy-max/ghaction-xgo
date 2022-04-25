@@ -43,7 +43,7 @@ jobs:
           go_version: 1.18
           dest: build
           prefix: myapp
-          targets: windows/386,windows/amd64,linux/386,linux/amd64,darwin/386,darwin/amd64
+          targets: windows/amd64,linux/amd64,linux/arm64,darwin/arm64
           v: true
           x: false
           race: false
