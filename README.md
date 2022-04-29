@@ -57,21 +57,22 @@ jobs:
 
 Following inputs can be used as `step.with` keys
 
-| Name            | Type    | Default             | Description                                                                                                                  |
-|-----------------|---------|---------------------|------------------------------------------------------------------------------------------------------------------------------|
-| `xgo_version`   | String  | `latest`            | xgo version (e.g., `v0.3.2`)                                                                                                 |
-| `go_version`    | String  | `latest`            | Go release to use for cross compilation from those [docker tags](https://hub.docker.com/r/crazymax/xgo/tags/) (e.g., `1.17`) |
-| `dest`          | String  | `build`             | Destination folder to put binaries in                                                                                        |
-| `pkg`           | String  |                     | Sub-package to build if not root import                                                                                      |
-| `prefix`        | String  | _package name_      | Prefix to use for output naming                                                                                              |
-| `targets`       | String  | `*/*`               | Comma separated targets to build for (e.g. `windows/amd64,linux/386`)                                                        |
-| `v`             | Bool    | `false`             | Prints the names of packages as they are compiled                                                                            |
-| `x`             | Bool    | `false`             | Prints the build commands as compilation progresses                                                                          |
-| `race`          | Bool    | `false`             | Enable data race detection                                                                                                   |
-| `tags`          | String  |                     | Comma separated list of build tags to consider satisfied during the build                                                    |
-| `ldflags`       | String  |                     | Arguments to pass on each go tool link invocation                                                                            |
-| `buildmode`     | String  | `default`           | Indicates which kind of object file to build                                                                                 |
-| `working_dir`   | String  | `$GITHUB_WORKSPACE` | Working directory                                                                                                            |
+| Name          | Type    | Default             | Description                                                                                                                  |
+|---------------|---------|---------------------|------------------------------------------------------------------------------------------------------------------------------|
+| `xgo_version` | String  | `latest`            | xgo version (e.g., `v0.3.2`)                                                                                                 |
+| `go_version`  | String  | `latest`            | Go release to use for cross compilation from those [docker tags](https://hub.docker.com/r/crazymax/xgo/tags/) (e.g., `1.17`) |
+| `dest`        | String  | `build`             | Destination folder to put binaries in                                                                                        |
+| `pkg`         | String  |                     | Sub-package to build if not root import                                                                                      |
+| `prefix`      | String  | _package name_      | Prefix to use for output naming                                                                                              |
+| `targets`     | String  | `*/*`               | Comma separated targets to build for (e.g. `windows/amd64,linux/386`)                                                        |
+| `v`           | Bool    | `false`             | Prints the names of packages as they are compiled                                                                            |
+| `x`           | Bool    | `false`             | Prints the build commands as compilation progresses                                                                          |
+| `race`        | Bool    | `false`             | Enable data race detection                                                                                                   |
+| `tags`        | String  |                     | Comma separated list of build tags to consider satisfied during the build                                                    |
+| `ldflags`     | String  |                     | Arguments to pass on each go tool link invocation                                                                            |
+| `buildmode`   | String  | `default`           | Indicates which kind of object file to build                                                                                 |
+| `buildvcs`    | String  |                     | Whether to stamp binaries with version control information                                                                   |
+| `working_dir` | String  | `$GITHUB_WORKSPACE` | Working directory                                                                                                            |
 
 ## Limitation
 

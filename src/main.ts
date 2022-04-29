@@ -24,8 +24,12 @@ async function run(): Promise<void> {
     const tags = core.getInput('tags');
     const ldflags = core.getInput('ldflags');
     const buildmode = core.getInput('buildmode');
+    const buildvcs = core.getInput('buildvcs');
     const workingDir = path.resolve(core.getInput('working_dir') || process.env['GITHUB_WORKSPACE'] || '.');
+
+    core.startGroup(`Download and install xgo`);
     const xgo = await installer.getXgo(xgo_version);
+    core.endGroup();
 
     // Run xgo
     const args: Array<string> = [];
@@ -62,12 +66,15 @@ async function run(): Promise<void> {
     if (buildmode) {
       args.push('-buildmode', buildmode);
     }
+    if (buildvcs) {
+      args.push('-buildvcs', buildvcs);
+    }
     args.push('.');
 
     process.chdir(workingDir);
     await exec.exec(xgo.path, args);
 
-    core.info('🔨 Fixing perms...');
+    core.info('Fixing perms');
     const uid = parseInt(child_process.execSync(`id -u`, {encoding: 'utf8'}).trim());
     const gid = parseInt(child_process.execSync(`id -g`, {encoding: 'utf8'}).trim());
     await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, workingDir]);

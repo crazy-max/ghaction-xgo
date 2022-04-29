@@ -51,6 +51,9 @@ inputs:
     description: 'Indicates which kind of object file to build'
     default: 'default'
     required: false
+  buildvcs:
+    description: 'Whether to stamp binaries with version control information'
+    required: false
   working_dir:
     description: 'Working directory'
     required: false
