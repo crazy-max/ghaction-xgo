@@ -74,10 +74,11 @@ async function run(): Promise<void> {
     process.chdir(workingDir);
     await exec.exec(xgo.path, args);
 
-    core.info('Fixing perms');
+    core.startGroup(`Fixing perms`);
     const uid = parseInt(child_process.execSync(`id -u`, {encoding: 'utf8'}).trim());
     const gid = parseInt(child_process.execSync(`id -g`, {encoding: 'utf8'}).trim());
     await exec.exec('sudo', ['chown', '-R', `${uid}:${gid}`, workingDir]);
+    core.endGroup();
   } catch (error) {
     core.setFailed(error.message);
   }

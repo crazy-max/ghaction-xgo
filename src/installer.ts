@@ -53,8 +53,36 @@ export async function getXgo(version: string): Promise<Xgo> {
 }
 
 const getFilename = (semver: string): string => {
-  const platform: string = osPlat == 'win32' ? 'windows' : osPlat;
-  const arch: string = osArch == 'x64' ? 'x86_64' : 'i386';
+  let platform, arch: string;
+  switch (osPlat) {
+    case 'win32': {
+      platform = 'windows';
+      break;
+    }
+    default: {
+      platform = osPlat;
+      break;
+    }
+  }
+  switch (osArch) {
+    case 'x64': {
+      arch = 'x86_64';
+      break;
+    }
+    case 'x32': {
+      arch = 'i386';
+      break;
+    }
+    case 'arm': {
+      const arm_version = (process.config.variables as any).arm_version;
+      arch = arm_version ? 'armv' + arm_version : 'arm';
+      break;
+    }
+    default: {
+      arch = osArch;
+      break;
+    }
+  }
   const ext: string = osPlat == 'win32' ? '.zip' : '.tar.gz';
   return util.format('xgo_%s_%s_%s%s', semver, platform, arch, ext);
 };
