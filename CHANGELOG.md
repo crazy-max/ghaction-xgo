@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.8.0 (2022/04/29)
+
+* Support arch variant to download xgo (#238)
+* `buildvcs` input (#237)
+
 ## 1.7.0 (2022/04/25)
 
 * Update e2e test and ci workflow (#233)
