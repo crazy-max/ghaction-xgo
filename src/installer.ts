@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
 import * as util from 'util';
@@ -19,16 +20,15 @@ export async function getXgo(version: string): Promise<Xgo> {
     throw new Error(`Cannot find xgo ${version} release`);
   }
   const semver: string = release.tag_name.replace(/^v/, '');
+  core.debug(`Release found: ${release.tag_name}`);
 
-  core.info(`✅ xgo version found: ${release.tag_name}`);
   const filename = getFilename(semver);
   const downloadUrl: string = util.format('https://github.com/crazy-max/xgo/releases/download/%s/%s', release.tag_name, filename);
 
-  core.info(`⬇️ Downloading ${downloadUrl}...`);
+  core.info(`Downloading ${downloadUrl}`);
   const downloadPath: string = await tc.downloadTool(downloadUrl);
   core.debug(`Downloaded to ${downloadPath}`);
 
-  core.info('📦 Extracting xgo...');
   let extPath: string;
   if (osPlat == 'win32') {
     extPath = await tc.extractZip(downloadPath);
@@ -43,8 +43,11 @@ export async function getXgo(version: string): Promise<Xgo> {
   const exePath: string = path.join(cachePath, osPlat == 'win32' ? 'xgo.exe' : 'xgo');
   core.debug(`Exe path is ${exePath}`);
 
+  core.info('Fixing perms');
+  fs.chmodSync(exePath, '0755');
+
   return {
-    path: path.join(cachePath, osPlat == 'win32' ? 'xgo.exe' : 'xgo'),
+    path: exePath,
     version: release.tag_name
   };
 }
