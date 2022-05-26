@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v2
       -
         name: Build
-        uses: crazy-max/ghaction-xgo@v1
+        uses: crazy-max/ghaction-xgo@v2
         with:
           xgo_version: latest
           go_version: 1.18
