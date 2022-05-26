@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0 (2022/05/26)
+
+* Node 16 as default runtime (#234)
+  * This requires a minimum [Actions Runner](https://github.com/actions/runner/releases/tag/v2.285.0) version of v2.285.0, which is by default available in GHES 3.4 or later.
+
 ## 1.8.0 (2022/04/29)
 
 * Support arch variant to download xgo (#238)
