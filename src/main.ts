@@ -18,14 +18,14 @@ async function run(): Promise<void> {
     const pkg = core.getInput('pkg');
     const prefix = core.getInput('prefix');
     const targets = core.getInput('targets');
-    const v = core.getInput('v');
-    const x = core.getInput('x');
-    const race = core.getInput('race');
+    const v = core.getBooleanInput('v');
+    const x = core.getBooleanInput('x');
+    const race = core.getBooleanInput('race');
     const tags = core.getInput('tags');
     const ldflags = core.getInput('ldflags');
     const buildmode = core.getInput('buildmode');
     const buildvcs = core.getInput('buildvcs');
-    const trimpath = core.getInput('trimpath');
+    const trimpath = core.getBooleanInput('trimpath');
     const workingDir = path.resolve(core.getInput('working_dir') || process.env['GITHUB_WORKSPACE'] || '.');
 
     core.startGroup(`Download and install xgo`);
@@ -49,13 +49,13 @@ async function run(): Promise<void> {
     if (targets) {
       args.push('-targets', targets);
     }
-    if (/true/i.test(v)) {
+    if (v) {
       args.push('-v');
     }
-    if (/true/i.test(x)) {
+    if (x) {
       args.push('-x');
     }
-    if (/true/i.test(race)) {
+    if (race) {
       args.push('-race');
     }
     if (tags) {
@@ -70,7 +70,7 @@ async function run(): Promise<void> {
     if (buildvcs) {
       args.push('-buildvcs', buildvcs);
     }
-    if (/true/i.test(trimpath)) {
+    if (trimpath) {
       args.push('-trimpath');
     }
     args.push('.');
