@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0 (2022/07/16)
+
+* use `core.getBooleanInput` (#250)
+* `trimpath` input (#249)
+* Bump @actions/http-client from 1.0.11 to 2.0.1 (#246)
+* Bump @actions/tool-cache from 1.7.2 to 2.0.1 (#245)
+* Bump @actions/core from 1.6.0 to 1.9.0 (#248)
+
 ## 2.0.0 (2022/05/26)
 
 * Node 16 as default runtime (#234)
