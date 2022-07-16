@@ -61,11 +61,6 @@ inputs:
   working_dir:
     description: 'Working directory'
     required: false
-  docker-repo:
-    deprecationMessage: 'docker-repo is deprecated and not used anymore.'
-    description: 'Use custom docker repo instead of official distribution'
-    default: 'ghcr.io/crazy-max/xgo'
-    required: false
 
 runs:
   using: 'node16'
