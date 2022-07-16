@@ -49,6 +49,7 @@ jobs:
           race: false
           ldflags: -s -w
           buildmode: default
+          trimpath: true
 ```
 
 ## Customizing
@@ -72,6 +73,7 @@ Following inputs can be used as `step.with` keys
 | `ldflags`     | String  |                     | Arguments to pass on each go tool link invocation                                                                            |
 | `buildmode`   | String  | `default`           | Indicates which kind of object file to build                                                                                 |
 | `buildvcs`    | String  |                     | Whether to stamp binaries with version control information                                                                   |
+| `trimpath`    | Bool    | `false`             | Remove all file system paths from the resulting executable                                                                   |
 | `working_dir` | String  | `$GITHUB_WORKSPACE` | Working directory                                                                                                            |
 
 ## Limitation

@@ -36,6 +36,7 @@ jobs:
           v: true
           x: false
           ldflags: -s -w
+          trimpath: true
           working_dir: ./test
       -
         name: Check

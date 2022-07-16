@@ -25,6 +25,7 @@ async function run(): Promise<void> {
     const ldflags = core.getInput('ldflags');
     const buildmode = core.getInput('buildmode');
     const buildvcs = core.getInput('buildvcs');
+    const trimpath = core.getInput('trimpath');
     const workingDir = path.resolve(core.getInput('working_dir') || process.env['GITHUB_WORKSPACE'] || '.');
 
     core.startGroup(`Download and install xgo`);
@@ -68,6 +69,9 @@ async function run(): Promise<void> {
     }
     if (buildvcs) {
       args.push('-buildvcs', buildvcs);
+    }
+    if (/true/i.test(trimpath)) {
+      args.push('-trimpath');
     }
     args.push('.');
 

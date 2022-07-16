@@ -54,6 +54,10 @@ inputs:
   buildvcs:
     description: 'Whether to stamp binaries with version control information'
     required: false
+  trimpath:
+    description: 'Remove all file system paths from the resulting executable'
+    default: 'false'
+    required: false
   working_dir:
     description: 'Working directory'
     required: false
