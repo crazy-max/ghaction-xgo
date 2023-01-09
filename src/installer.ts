@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
+import * as semver from 'semver';
 import * as util from 'util';
 import * as github from './github';
 import * as core from '@actions/core';
@@ -19,10 +20,10 @@ export async function getXgo(version: string): Promise<Xgo> {
   if (!release) {
     throw new Error(`Cannot find xgo ${version} release`);
   }
-  const semver: string = release.tag_name.replace(/^v/, '');
+  const fullversion: string = release.tag_name.replace(/^v/, '');
   core.debug(`Release found: ${release.tag_name}`);
 
-  const filename = getFilename(semver);
+  const filename = getFilename(fullversion);
   const downloadUrl: string = util.format('https://github.com/crazy-max/xgo/releases/download/%s/%s', release.tag_name, filename);
 
   core.info(`Downloading ${downloadUrl}`);
@@ -37,7 +38,7 @@ export async function getXgo(version: string): Promise<Xgo> {
   }
   core.debug(`Extracted to ${extPath}`);
 
-  const cachePath: string = await tc.cacheDir(extPath, 'ghaction-xgo', semver);
+  const cachePath: string = await tc.cacheDir(extPath, 'ghaction-xgo', fullversion);
   core.debug(`Cached to ${cachePath}`);
 
   const exePath: string = path.join(cachePath, osPlat == 'win32' ? 'xgo.exe' : 'xgo');
@@ -52,7 +53,7 @@ export async function getXgo(version: string): Promise<Xgo> {
   };
 }
 
-const getFilename = (semver: string): string => {
+const getFilename = (version: string): string => {
   let platform, arch: string;
   switch (osPlat) {
     case 'win32': {
@@ -66,11 +67,11 @@ const getFilename = (semver: string): string => {
   }
   switch (osArch) {
     case 'x64': {
-      arch = 'x86_64';
+      arch = semver.satisfies(version, '>=0.24.0') ? 'amd64' : 'x86_64';
       break;
     }
     case 'x32': {
-      arch = 'i386';
+      arch = semver.satisfies(version, '>=0.24.0') ? '386' : 'i386';
       break;
     }
     case 'arm': {
@@ -84,5 +85,5 @@ const getFilename = (semver: string): string => {
     }
   }
   const ext: string = osPlat == 'win32' ? '.zip' : '.tar.gz';
-  return util.format('xgo_%s_%s_%s%s', semver, platform, arch, ext);
+  return util.format('xgo_%s_%s_%s%s', version, platform, arch, ext);
 };
