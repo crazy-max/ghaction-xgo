@@ -11,7 +11,7 @@ on:
       - 'v*'
   pull_request:
     paths-ignore:
-      - '.github/hugo-releases.json'
+      - '.github/xgo-releases.json'
 
 jobs:
   ci:
