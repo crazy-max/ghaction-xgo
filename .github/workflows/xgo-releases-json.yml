@@ -15,40 +15,18 @@ on:
 
 jobs:
   generate:
-    uses: crazy-max/.github/.github/workflows/releases-json.yml@87284151265b5b5ffd197ca9cd0da5960928122d
+    uses: crazy-max/.github/.github/workflows/releases-json.yml@002654044825b3c2b9856af61b8a2aaf389706b1
     with:
       repository: crazy-max/xgo
+      artifact_name: xgo-releases-json
+      filename: xgo-releases.json
     secrets: inherit
-
-  create-file:
-    runs-on: ubuntu-22.04
-    needs:
-      - generate
-    steps:
-      -
-        name: Create file
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            await fs.writeFileSync('xgo-releases.json', `${{ needs.generate.outputs.releases }}`);
-      -
-        name: Check file
-        run: |
-          jq . xgo-releases.json
-      -
-        name: Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: releases-json
-          path: xgo-releases.json
-          if-no-files-found: error
 
   open-pr:
     runs-on: ubuntu-22.04
     if: github.event_name != 'pull_request'
     needs:
-      - create-file
+      - generate
     steps:
       -
         name: Checkout
@@ -57,7 +35,7 @@ jobs:
         name: Download
         uses: actions/download-artifact@v3
         with:
-          name: releases-json
+          name: xgo-releases-json
           path: .github
       -
         name: Commit changes
