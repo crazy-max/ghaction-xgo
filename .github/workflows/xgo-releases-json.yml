@@ -10,8 +10,10 @@ on:
     - cron: '0 10 * * 0'
   push:
     branches:
-      - master
+      - 'master'
   pull_request:
+    paths-ignore:
+      - '.github/hugo-releases.json'
 
 jobs:
   generate:
@@ -46,7 +48,7 @@ jobs:
         uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04
         with:
           base: master
-          branch: xgo-releases-json/${{ github.run_id }}
+          branch: bot/xgo-releases-json
           commit-message: "update .github/xgo-releases.json"
           signoff: true
           delete-branch: true
