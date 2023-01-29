@@ -59,8 +59,8 @@ Following inputs can be used as `step.with` keys
 
 | Name          | Type    | Default             | Description                                                                                                                  |
 |---------------|---------|---------------------|------------------------------------------------------------------------------------------------------------------------------|
-| `xgo_version` | String  | `latest`            | xgo version (e.g., `v0.3.2`)                                                                                                 |
-| `go_version`  | String  | `latest`            | Go release to use for cross compilation from those [docker tags](https://hub.docker.com/r/crazymax/xgo/tags/) (e.g., `1.17`) |
+| `xgo_version` | String  | `latest`            | xgo version (e.g., `v0.24.0`)                                                                                                |
+| `go_version`  | String  | `latest`            | Go release to use for cross compilation from those [docker tags](https://hub.docker.com/r/crazymax/xgo/tags/) (e.g., `1.19`) |
 | `dest`        | String  | `build`             | Destination folder to put binaries in                                                                                        |
 | `pkg`         | String  |                     | Sub-package to build if not root import                                                                                      |
 | `prefix`      | String  | _package name_      | Prefix to use for output naming                                                                                              |
