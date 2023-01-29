@@ -1,0 +1,78 @@
+name: xgo-releases-json
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 10 * * 0'
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  generate:
+    uses: crazy-max/.github/.github/workflows/releases-json.yml@87284151265b5b5ffd197ca9cd0da5960928122d
+    with:
+      repository: crazy-max/xgo
+    secrets: inherit
+
+  create-file:
+    runs-on: ubuntu-22.04
+    needs:
+      - generate
+    steps:
+      -
+        name: Create file
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            await fs.writeFileSync('xgo-releases.json', `${{ needs.generate.outputs.releases }}`);
+      -
+        name: Check file
+        run: |
+          jq . xgo-releases.json
+      -
+        name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: releases-json
+          path: xgo-releases.json
+          if-no-files-found: error
+
+  open-pr:
+    runs-on: ubuntu-22.04
+    if: github.event_name != 'pull_request'
+    needs:
+      - create-file
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Download
+        uses: actions/download-artifact@v3
+        with:
+          name: releases-json
+          path: .github
+      -
+        name: Commit changes
+        run: |
+          git add -A .
+      -
+        name: Create PR
+        uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04
+        with:
+          base: master
+          branch: xgo-releases-json/${{ github.run_id }}
+          commit-message: "update .github/xgo-releases.json"
+          signoff: true
+          delete-branch: true
+          title: "Update `.github/xgo-releases.json`"
+          body: |
+            Update `.github/xgo-releases.json` to keep in sync with [https://github.com/crazy-max/xgo](https://github.com/crazy-max/xgo).
+          draft: false
