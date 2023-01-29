@@ -3,8 +3,8 @@ import * as path from 'path';
 import * as os from 'os';
 import * as semver from 'semver';
 import * as util from 'util';
-import * as github from './github';
 import * as core from '@actions/core';
+import * as httpm from '@actions/http-client';
 import * as tc from '@actions/tool-cache';
 
 const osPlat: string = os.platform();
@@ -15,11 +15,31 @@ export interface Xgo {
   version: string;
 }
 
-export async function getXgo(version: string): Promise<Xgo> {
-  const release: github.GitHubRelease | null = await github.getRelease(version);
-  if (!release) {
-    throw new Error(`Cannot find xgo ${version} release`);
+export interface GitHubRelease {
+  id: number;
+  tag_name: string;
+  html_url: string;
+  assets: Array<string>;
+}
+
+export const getRelease = async (version: string): Promise<GitHubRelease> => {
+  const url = `https://raw.githubusercontent.com/crazy-max/ghaction-xgo/master/.github/xgo-releases.json`;
+  const http: httpm.HttpClient = new httpm.HttpClient('ghaction-xgo');
+  const resp: httpm.HttpClientResponse = await http.get(url);
+  const body = await resp.readBody();
+  const statusCode = resp.message.statusCode || 500;
+  if (statusCode >= 400) {
+    throw new Error(`Failed to get Xgo release ${version} from ${url} with status code ${statusCode}: ${body}`);
   }
+  const releases = <Record<string, GitHubRelease>>JSON.parse(body);
+  if (!releases[version]) {
+    throw new Error(`Cannot find Xgo release ${version} in ${url}`);
+  }
+  return releases[version];
+};
+
+export async function getXgo(version: string): Promise<Xgo> {
+  const release: GitHubRelease = await getRelease(version);
   const fullversion: string = release.tag_name.replace(/^v/, '');
   core.debug(`Release found: ${release.tag_name}`);
 
