@@ -1,23 +1,65 @@
 {
   "latest": {
-    "id": 107732790,
-    "tag_name": "v0.28.0",
-    "html_url": "https://github.com/crazy-max/xgo/releases/tag/v0.28.0",
+    "id": 116851331,
+    "tag_name": "v0.30.0",
+    "html_url": "https://github.com/crazy-max/xgo/releases/tag/v0.30.0",
     "assets": [
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/checksums.txt",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_darwin_amd64.tar.gz",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_darwin_arm64.tar.gz",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_linux_386.tar.gz",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_linux_amd64.tar.gz",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_linux_arm64.tar.gz",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_linux_armv5.tar.gz",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_linux_armv6.tar.gz",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_linux_armv7.tar.gz",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_linux_ppc64le.tar.gz",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_linux_s390x.tar.gz",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_windows_386.zip",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_windows_amd64.zip",
-      "https://github.com/crazy-max/xgo/releases/download/v0.28.0/xgo_0.28.0_windows_arm64.zip"
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/checksums.txt",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_darwin_amd64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_darwin_arm64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_386.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_amd64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_arm64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_armv5.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_armv6.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_armv7.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_ppc64le.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_s390x.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_windows_386.zip",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_windows_amd64.zip",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_windows_arm64.zip"
+    ]
+  },
+  "v0.30.0": {
+    "id": 116851331,
+    "tag_name": "v0.30.0",
+    "html_url": "https://github.com/crazy-max/xgo/releases/tag/v0.30.0",
+    "assets": [
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/checksums.txt",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_darwin_amd64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_darwin_arm64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_386.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_amd64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_arm64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_armv5.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_armv6.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_armv7.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_ppc64le.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_linux_s390x.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_windows_386.zip",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_windows_amd64.zip",
+      "https://github.com/crazy-max/xgo/releases/download/v0.30.0/xgo_0.30.0_windows_arm64.zip"
+    ]
+  },
+  "v0.29.0": {
+    "id": 116661321,
+    "tag_name": "v0.29.0",
+    "html_url": "https://github.com/crazy-max/xgo/releases/tag/v0.29.0",
+    "assets": [
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/checksums.txt",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_darwin_amd64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_darwin_arm64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_linux_386.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_linux_amd64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_linux_arm64.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_linux_armv5.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_linux_armv6.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_linux_armv7.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_linux_ppc64le.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_linux_s390x.tar.gz",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_windows_386.zip",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_windows_amd64.zip",
+      "https://github.com/crazy-max/xgo/releases/download/v0.29.0/xgo_0.29.0_windows_arm64.zip"
     ]
   },
   "v0.28.0": {
