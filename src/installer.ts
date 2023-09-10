@@ -95,6 +95,7 @@ const getFilename = (version: string): string => {
       break;
     }
     case 'arm': {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const arm_version = (process.config.variables as any).arm_version;
       arch = arm_version ? 'armv' + arm_version : 'arm';
       break;
