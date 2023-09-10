@@ -18,7 +18,7 @@ describe('getRelease', () => {
   });
 
   it('unknown release', async () => {
-    await expect(installer.getRelease('foo')).rejects.toThrowError(new Error('Cannot find Xgo release foo in https://raw.githubusercontent.com/crazy-max/ghaction-xgo/master/.github/xgo-releases.json'));
+    await expect(installer.getRelease('foo')).rejects.toThrow(new Error('Cannot find Xgo release foo in https://raw.githubusercontent.com/crazy-max/ghaction-xgo/master/.github/xgo-releases.json'));
   });
 });
 
