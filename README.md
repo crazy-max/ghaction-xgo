@@ -33,13 +33,13 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       -
         name: Build
-        uses: crazy-max/ghaction-xgo@v2
+        uses: crazy-max/ghaction-xgo@v3
         with:
           xgo_version: latest
-          go_version: 1.18
+          go_version: 1.21
           dest: build
           prefix: myapp
           targets: windows/amd64,linux/amd64,linux/arm64,darwin/arm64
@@ -55,7 +55,7 @@ jobs:
 
 ### inputs
 
-Following inputs can be used as `step.with` keys
+The following inputs can be used as `step.with` keys
 
 | Name          | Type    | Default             | Description                                                                                                                  |
 |---------------|---------|---------------------|------------------------------------------------------------------------------------------------------------------------------|
@@ -81,11 +81,10 @@ This action is only available for Linux [virtual environments](https://help.gith
 
 ## Contributing
 
-Want to contribute? Awesome! The most basic way to show your support is to star the project, or to raise issues. If
-you want to open a pull request, please read the [contributing guidelines](.github/CONTRIBUTING.md).
-
-You can also support this project by [**becoming a sponsor on GitHub**](https://github.com/sponsors/crazy-max) or by
-making a [Paypal donation](https://www.paypal.me/crazyws) to ensure this journey continues indefinitely!
+Want to contribute? Awesome! The most basic way to show your support is to star
+the project, or to raise issues. You can also support this project by [**becoming a sponsor on GitHub**](https://github.com/sponsors/crazy-max)
+or by making a [PayPal donation](https://www.paypal.me/crazyws) to ensure this
+journey continues indefinitely!
 
 Thanks again for your support, it is much appreciated! :pray:
 
