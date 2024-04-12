@@ -45,7 +45,7 @@ jobs:
           git add -A .
       -
         name: Create PR
-        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38
+        uses: peter-evans/create-pull-request@c55203cfde3e5c11a452d352b4393e68b85b4533
         with:
           base: master
           branch: bot/xgo-releases-json
