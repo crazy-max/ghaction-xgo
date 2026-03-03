@@ -1,4 +1,4 @@
-module github.com/crazy-max/ghaction-xgo/test
+module github.com/crazy-max/ghaction-xgo/tests/fixtures/app
 
 go 1.17
 

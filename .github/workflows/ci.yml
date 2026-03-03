@@ -44,9 +44,8 @@ jobs:
           x: false
           ldflags: -s -w
           trimpath: true
-          working_dir: ./test
+          working_dir: ./tests/fixtures/app
       -
         name: Check
         run: |
-          sudo apt-get -qq install tree
-          tree -f -h ./test/build
+          tree -f -h ./tests/fixtures/app/build

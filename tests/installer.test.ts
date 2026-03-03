@@ -1,5 +1,6 @@
-import {describe, expect, it} from '@jest/globals';
+import {describe, expect, it} from 'vitest';
 import * as fs from 'fs';
+
 import * as installer from '../src/installer';
 
 describe('getRelease', () => {
@@ -17,8 +18,8 @@ describe('getRelease', () => {
     expect(release?.html_url).toEqual('https://github.com/crazy-max/xgo/releases/tag/v0.24.0');
   });
 
-  it('unknown release', async () => {
-    await expect(installer.getRelease('foo')).rejects.toThrow(new Error('Cannot find Xgo release foo in https://raw.githubusercontent.com/crazy-max/ghaction-xgo/master/.github/xgo-releases.json'));
+  it('unknown release', () => {
+    return expect(installer.getRelease('foo')).rejects.toThrow(new Error('Cannot find Xgo release foo in https://raw.githubusercontent.com/crazy-max/ghaction-xgo/master/.github/xgo-releases.json'));
   });
 });
 
