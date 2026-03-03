@@ -1,9 +1,10 @@
-import * as installer from './installer';
+import * as child_process from 'child_process';
 import * as os from 'os';
 import * as path from 'path';
-import * as child_process from 'child_process';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+
+import * as installer from './installer.js';
 
 async function run(): Promise<void> {
   try {
