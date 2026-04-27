@@ -19,7 +19,7 @@ on:
 
 jobs:
   generate:
-    uses: crazy-max/.github/.github/workflows/releases-json.yml@bb328ea508cd6a89d0865555ddbeb148e5724aed # v1.3.0
+    uses: crazy-max/.github/.github/workflows/releases-json.yml@64a0bfaf6e6bb1c448d6e4c42b11034ee7094f16 # v1.7.1
     with:
       repository: crazy-max/xgo
       artifact_name: xgo-releases-json
